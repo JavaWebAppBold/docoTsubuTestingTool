@@ -59,6 +59,23 @@ public class MutterDAO {
 			return null;
 		}
 	}
+	public boolean remove(Mutter mutter) {
+		try(Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+			String sql = "DELETE FROM MUTTER WHERE ID = ? AND NAME = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setInt(1, mutter.getId());
+			pStmt.setString(2, mutter.getUserName());
+			int result = pStmt.executeUpdate();
+	
+			if (result != 1) {
+				return false;
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
 	// public boolean create(Mutter mutter) {
 	// 	try(Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 	// 		String sql = "INSERT INTO MUTTER (NAME, TEXT) VALUES (?, ?)";

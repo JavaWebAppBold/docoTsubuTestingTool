@@ -22,4 +22,9 @@ public class Mutter implements Serializable {
 	public int getId() { return id; }
 	public String getUserName() { return userName; }
 	public String getText() { return text; }
+
+	@Override
+	public String toString() {
+		return "id: " + this.id + ", name: " + this.userName + ", text: " + this.text;
+	}
 }

@@ -13,7 +13,9 @@ import jp.co.app.results.ResultStatus;
 import jp.co.app.results.tests.TestResult;
 import jp.co.app.commands.Command;
 import jp.co.app.commands.CheckMutterCommand;
+import jp.co.app.commands.DeleteMutterCommand;
 import jp.co.app.results.commands.CheckMutterCommandResult;
+import jp.co.app.results.commands.DeleteMutterCommandResult;
 
 import jp.co.app.results.dao.Mutter;
 
@@ -51,6 +53,19 @@ public class RegisterTsubuyakiTestCase extends TestCase {
 
 	@Override
 	protected void tearDown() {
+		var result = this.tergetCommand.getResult();
+		var mutter = CheckMutterCommandResult.class.cast(result).getMutter();
+		if ( mutter == null ) {
+			// TODO 頑張って削除する？それともデータは残す？
+		}
+		System.out.println(mutter);
+		var deleteCommand = DeleteMutterCommand.of(mutter);
+		deleteCommand.execute();
+		var deleteResult = deleteCommand.getResult();
+		var isDeleted = DeleteMutterCommandResult.class.cast(deleteResult).isDeleted();
+		if ( !isDeleted ) {
+			// TODO 頑張って削除する？それともデータは残す？
+		}
 	}
 	
 	@Override
