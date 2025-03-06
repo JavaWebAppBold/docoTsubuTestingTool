@@ -107,7 +107,7 @@ public class NetClient {
 			// var msg  = e.getMessage() + "\n";
 			// msg = msg + createStackTrace(e);
 			// result.setErrorMessage(e.stackTrace());
-			System.err.println(e);
+			// System.err.println(e);
 			result.setErrorMessage(e.toString());
 		}
 		this.currentResult = result;

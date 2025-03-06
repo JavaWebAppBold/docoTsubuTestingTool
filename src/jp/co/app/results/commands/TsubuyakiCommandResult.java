@@ -13,8 +13,13 @@ public class TsubuyakiCommandResult extends CommandResult {
 
 	@Override
 	public boolean equals(CommandResult other) {
-		// TODO リフレクションで使えないだろうか？
-		var _other = (TsubuyakiCommandResult)other;
+		if ( other == null ) {
+			return false;
+		}
+		if ( !(other.getClass().equals(this.getClass())) ) {
+			return false;
+		}
+		var _other = this.getClass().cast(other);
 		if ( _other == null ) {
 			return false;
 		}

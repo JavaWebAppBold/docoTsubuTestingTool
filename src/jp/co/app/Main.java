@@ -3,18 +3,6 @@ package jp.co.app;
 import java.util.List;
 import java.util.ArrayList;
 
-// import java.io.IOException;
-// import java.util.List;
-// import java.util.ArrayList;
-// import java.util.stream.Stream;
-// import java.net.CookieManager;
-// import java.net.http.HttpClient;
-// import java.net.http.HttpRequest;
-// import java.net.http.HttpResponse;
-// import java.net.http.HttpResponse.BodyHandlers;
-// import java.net.URI;
-// import java.net.URLEncoder;
-
 import jp.co.app.testsuite.HansOnTestSuite;
 
 

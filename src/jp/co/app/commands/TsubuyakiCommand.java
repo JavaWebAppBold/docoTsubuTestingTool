@@ -19,6 +19,7 @@ public class TsubuyakiCommand extends Command {
 		this.result = TsubuyakiCommandResult.builder()
 			.httpStatus(result.getHttpStatus())
 			.body(result.getBody())
+			.errorMessage(result.getErrorMessage())
 			.build();
 	}
 

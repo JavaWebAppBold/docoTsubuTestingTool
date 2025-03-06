@@ -18,6 +18,9 @@ public class NetCommandResult extends CommandResult {
 			return false;
 		}
 		var _other = this.getClass().cast(other);
+		if ( _other == null ) {
+			return false;
+		}
 		boolean isEquals = true;
 		isEquals = isEquals && (this.httpStatus == _other.httpStatus);
 		if ( this.body.equals(_other.body) ) {

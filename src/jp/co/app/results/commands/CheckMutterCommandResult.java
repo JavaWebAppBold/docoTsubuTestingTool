@@ -18,6 +18,9 @@ public class CheckMutterCommandResult extends NetCommandResult {
 			return false;
 		}
 		var _other = this.getClass().cast(other);
+		if ( _other == null || _other.mutter == null ) {
+			return false;
+		}
 		boolean isEquals = true;
 		isEquals = isEquals && (this.mutter.getUserName().equals(_other.mutter.getUserName()));
 		isEquals = isEquals && (this.mutter.getText().equals(_other.mutter.getText()));
