@@ -8,8 +8,10 @@ import java.util.ArrayList;
 
 import jp.co.app.commons.Url;
 import jp.co.app.commons.Random;
+import jp.co.app.commands.CheckServerHelthCommand;
 import jp.co.app.commons.Properties;
 import jp.co.app.web.NetClient;
+import jp.co.app.results.ResultStatus;
 import jp.co.app.results.tests.TestResult;
 import jp.co.app.testcase.TestCase;
 import jp.co.app.testcase.TopPageTestCase;
@@ -28,8 +30,6 @@ public class HansOnTestSuite extends TestSuite {
 	private List<Class<? extends TestCase>> testCaseClasses;
 	
 	private HansOnTestSuite() {
-		// TOOD サーバ起動チェックを入れる
-
 		// TODO 実行時間で見て？登録したデータを削除する→データが逼迫すると思う
 		
 		this.testCaseClasses = new ArrayList<>(){
@@ -72,6 +72,35 @@ public class HansOnTestSuite extends TestSuite {
 	}
 	@Override
 	protected void run() {
+		// TOOD サーバ起動チェックを入れる
+		var cmd = CheckServerHelthCommand.of(this.client);
+		cmd.execute();
+		if ("".equals(cmd.getResult().getErrorMessage())) {
+			// pass
+		} else {
+			var result = new TestCase() {
+					@Override
+					protected void setUp() {
+					}
+					
+					@Override
+					protected void tearDown() {
+					}
+					
+					@Override
+					protected void run() {
+						this.testResult = TestResult.build()
+							.status(ResultStatus.RE)
+							.message(cmd.getResult().getErrorMessage())
+							.build();
+					}
+
+				};
+			result.run();
+			this.testCases.add(result);
+			return;
+		}
+
 		this.testCaseClasses.forEach(t->{
 				try{
 					var c = t.getConstructor(NetClient.class);

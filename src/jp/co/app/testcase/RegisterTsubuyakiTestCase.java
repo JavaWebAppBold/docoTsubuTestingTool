@@ -58,7 +58,6 @@ public class RegisterTsubuyakiTestCase extends TestCase {
 		if ( mutter == null ) {
 			// TODO 頑張って削除する？それともデータは残す？
 		}
-		System.out.println(mutter);
 		var deleteCommand = DeleteMutterCommand.of(mutter);
 		deleteCommand.execute();
 		var deleteResult = deleteCommand.getResult();
