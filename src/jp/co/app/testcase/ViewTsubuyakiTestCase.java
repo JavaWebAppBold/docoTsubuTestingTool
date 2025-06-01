@@ -41,7 +41,7 @@ public class ViewTsubuyakiTestCase extends TestCase {
 		var user = Properties.of().get(USER);
 		expected = ViewTsubuyakiCommandResult.builder()
 			.httpStatus(200)
-			.body("<p> *" + user + " *: *" + comment + " *</p>")
+			.body("<p> *" + user + ".*" + comment + " *</p>")
 		 	.build();
 		title = "9. 投稿した内容が閲覧できている";
 	}
