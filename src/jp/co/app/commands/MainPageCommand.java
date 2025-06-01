@@ -6,6 +6,7 @@ import jp.co.app.results.commands.MainPageCommandResult;
 
 public class MainPageCommand extends NetCommand {
 	private NetClient client;
+
 	private MainPageCommand(NetClient client) {
 		this.client = client;
 	}
@@ -14,11 +15,8 @@ public class MainPageCommand extends NetCommand {
 	public void execute() {
 		this.client.get("Main");
 		var result = this.client.getCurrentResult();
-		this.result = MainPageCommandResult.builder()
-			.httpStatus(result.getHttpStatus())
-			.body(result.getBody())
-			.errorMessage(result.getErrorMessage())
-			.build();
+		this.result = MainPageCommandResult.builder().httpStatus(result.getHttpStatus()).body(result.getBody())
+				.errorMessage(result.getErrorMessage()).build();
 	}
 
 	public boolean hasResult() {
@@ -29,8 +27,8 @@ public class MainPageCommand extends NetCommand {
 	public CommandResult getResult() {
 		return this.result;
 	}
+
 	public static MainPageCommand of(NetClient client) {
 		return new MainPageCommand(client);
 	}
 }
-

@@ -6,6 +6,7 @@ import jp.co.app.results.commands.LogoutCommandResult;
 
 public class LogoutCommand extends NetCommand {
 	private NetClient client;
+
 	private LogoutCommand(NetClient client) {
 		this.client = client;
 	}
@@ -14,11 +15,8 @@ public class LogoutCommand extends NetCommand {
 	public void execute() {
 		this.client.get("Logout");
 		var result = this.client.getCurrentResult();
-		this.result = LogoutCommandResult.builder()
-			.httpStatus(result.getHttpStatus())
-			.body(result.getBody())
-			.errorMessage(result.getErrorMessage())
-			.build();
+		this.result = LogoutCommandResult.builder().httpStatus(result.getHttpStatus()).body(result.getBody())
+				.errorMessage(result.getErrorMessage()).build();
 	}
 
 	public boolean hasResult() {
@@ -29,8 +27,8 @@ public class LogoutCommand extends NetCommand {
 	public CommandResult getResult() {
 		return this.result;
 	}
+
 	public static LogoutCommand of(NetClient client) {
 		return new LogoutCommand(client);
 	}
 }
-

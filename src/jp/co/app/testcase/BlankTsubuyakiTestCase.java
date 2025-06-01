@@ -22,23 +22,16 @@ public class BlankTsubuyakiTestCase extends TestCase {
 		this.setUpCommand = ClientClearCommand.of(client);
 		var preCommand = LoginCommand.of(client);
 		this.tergetCommand = BlankTsubuyakiCommand.of(client);
-		param = TestParameter.builder()
-			.operation(Operation.of(
-									preCommand
-									, this.tergetCommand
-									))
-		.build();
-		expected = BlankTsubuyakiCommandResult.builder()
-			.httpStatus(200)
-		 	.build();
+		param = TestParameter.builder().operation(Operation.of(preCommand, this.tergetCommand)).build();
+		expected = BlankTsubuyakiCommandResult.builder().httpStatus(200).build();
 		title = "8. 正常に投稿できる、空文字で投稿してもエラーにならない";
 	}
-	
+
 	@Override
 	protected void setUp() {
-		try{
+		try {
 			this.setUpCommand.execute();
-		} catch(Throwable e) {
+		} catch (Throwable e) {
 			System.err.println("");
 			this.testResult = TestResult.build().status(ResultStatus.RE).build();
 		}
@@ -47,24 +40,21 @@ public class BlankTsubuyakiTestCase extends TestCase {
 	@Override
 	protected void tearDown() {
 	}
-	
+
 	@Override
 	protected void run() {
 		param.getOperation().execute();
 		var actual = this.tergetCommand.getResult();
-		if ( expected.equals(actual) ) {
-			this.testResult = TestResult.build()
-					.status(ResultStatus.AC).build();
+		if (expected.equals(actual)) {
+			this.testResult = TestResult.build().status(ResultStatus.AC).build();
 		} else {
-			this.testResult = TestResult.build()
-					.status(ResultStatus.WA)
+			this.testResult = TestResult.build().status(ResultStatus.WA)
 					.message(actual.getErrorMessage(expected, actual)).build();
 		}
 	}
-	
+
 	public static TestCase of(NetClient client) {
 		return new BlankTsubuyakiTestCase(client);
 	}
 
 }
-

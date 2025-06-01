@@ -1,7 +1,5 @@
 package jp.co.app.results.commands;
 
-import jp.co.app.results.dao.Mutter;
-
 public class DeleteMutterCommandResult extends NetCommandResult {
 	private boolean deleted = false;
 
@@ -17,8 +15,10 @@ public class DeleteMutterCommandResult extends NetCommandResult {
 	public static Builder builder() {
 		return new Builder();
 	}
+
 	public static class Builder extends NetCommandResult.Builder {
 		private DeleteMutterCommandResult result;
+
 		public Builder() {
 			super();
 			result = new DeleteMutterCommandResult();
@@ -34,4 +34,3 @@ public class DeleteMutterCommandResult extends NetCommandResult {
 		}
 	}
 }
-

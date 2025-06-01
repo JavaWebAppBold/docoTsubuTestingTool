@@ -25,27 +25,21 @@ public class RegisterTsubuyakiTestCase extends TestCase {
 	private Command setUpCommand;
 
 	public RegisterTsubuyakiTestCase(NetClient client) {
-		var user = (String)Properties.of().get(USER);
-		var comment = (String)Properties.of().get(TSUBUYAKI);
+		var user = (String) Properties.of().get(USER);
+		var comment = (String) Properties.of().get(TSUBUYAKI);
 
 		this.tergetCommand = CheckMutterCommand.of(user, comment);
-		param = TestParameter.builder()
-			.operation(Operation.of(
-									this.tergetCommand
-									))
-		.build();
+		param = TestParameter.builder().operation(Operation.of(this.tergetCommand)).build();
 
-		expected = CheckMutterCommandResult.builder()
-			.mutter(new Mutter(0, user, comment))
-		 	.build();
+		expected = CheckMutterCommandResult.builder().mutter(new Mutter(0, user, comment)).build();
 		title = "10.投稿内容がDBで管理されている";
 	}
-	
+
 	@Override
 	protected void setUp() {
-		try{
+		try {
 			this.setUpCommand.execute();
-		} catch(Throwable e) {
+		} catch (Throwable e) {
 			System.err.println("");
 			this.testResult = TestResult.build().status(ResultStatus.RE).build();
 		}
@@ -55,23 +49,23 @@ public class RegisterTsubuyakiTestCase extends TestCase {
 	protected void tearDown() {
 		var result = this.tergetCommand.getResult();
 		var mutter = CheckMutterCommandResult.class.cast(result).getMutter();
-		if ( mutter == null ) {
+		if (mutter == null) {
 			// TODO 頑張って削除する？それともデータは残す？
 		}
 		var deleteCommand = DeleteMutterCommand.of(mutter);
 		deleteCommand.execute();
 		var deleteResult = deleteCommand.getResult();
 		var isDeleted = DeleteMutterCommandResult.class.cast(deleteResult).isDeleted();
-		if ( !isDeleted ) {
+		if (!isDeleted) {
 			// TODO 頑張って削除する？それともデータは残す？
 		}
 	}
-	
+
 	@Override
 	protected void run() {
 		param.getOperation().execute();
 		var actual = this.tergetCommand.getResult();
-		if ( expected.equals(actual) ) {
+		if (expected.equals(actual)) {
 			this.testResult = TestResult.build().status(ResultStatus.AC).build();
 		} else {
 			var actMutter = CheckMutterCommandResult.class.cast(actual).getMutter();
@@ -86,10 +80,9 @@ public class RegisterTsubuyakiTestCase extends TestCase {
 			this.testResult = TestResult.build().status(ResultStatus.WA).message(comment).build();
 		}
 	}
-	
+
 	public static TestCase of(NetClient client) {
 		return new MainPageTestCase(client);
 	}
 
 }
-

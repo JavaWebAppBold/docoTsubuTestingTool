@@ -6,6 +6,7 @@ import jp.co.app.results.commands.ClientClearCommandResult;
 
 public class ClientClearCommand extends NetCommand {
 	private NetClient client;
+
 	private ClientClearCommand(NetClient client) {
 		this.client = client;
 	}
@@ -13,10 +14,7 @@ public class ClientClearCommand extends NetCommand {
 	@Override
 	public void execute() {
 		this.client.clear();
-		this.result = ClientClearCommandResult.builder()
-			.httpStatus(200)
-			.body("")
-			.build();
+		this.result = ClientClearCommandResult.builder().httpStatus(200).body("").build();
 	}
 
 	public boolean hasResult() {
@@ -27,8 +25,8 @@ public class ClientClearCommand extends NetCommand {
 	public CommandResult getResult() {
 		return this.result;
 	}
+
 	public static ClientClearCommand of(NetClient client) {
 		return new ClientClearCommand(client);
 	}
 }
-

@@ -26,31 +26,24 @@ public class ViewTsubuyakiTestCase extends TestCase {
 	public ViewTsubuyakiTestCase(NetClient client) {
 		var comment = Random.of().toString();
 		Properties.of().add(TSUBUYAKI, comment);
-		
+
 		this.setUpCommand = ClientClearCommand.of(client);
 		var preCommand = LoginCommand.of(client);
 		preCommand.addCommand(PostTsubuyakiCommand.of(client));
 		this.tergetCommand = ViewTsubuyakiCommand.of(client);
-		param = TestParameter.builder()
-			.operation(Operation.of(
-									preCommand,
-									this.tergetCommand
-									))
-		.build();
+		param = TestParameter.builder().operation(Operation.of(preCommand, this.tergetCommand)).build();
 
 		var user = Properties.of().get(USER);
-		expected = ViewTsubuyakiCommandResult.builder()
-			.httpStatus(200)
-			.body("<p> *" + user + ".*" + comment + " *</p>")
-		 	.build();
+		expected = ViewTsubuyakiCommandResult.builder().httpStatus(200).body("<p> *" + user + ".*" + comment + " *</p>")
+				.build();
 		title = "9. 投稿した内容が閲覧できている";
 	}
-	
+
 	@Override
 	protected void setUp() {
-		try{
+		try {
 			this.setUpCommand.execute();
-		} catch(Throwable e) {
+		} catch (Throwable e) {
 			System.err.println("");
 			this.testResult = TestResult.build().status(ResultStatus.RE).build();
 		}
@@ -59,24 +52,21 @@ public class ViewTsubuyakiTestCase extends TestCase {
 	@Override
 	protected void tearDown() {
 	}
-	
+
 	@Override
 	protected void run() {
 		param.getOperation().execute();
 		var actual = this.tergetCommand.getResult();
-		if ( expected.equals(actual) ) {
-			this.testResult = TestResult.build()
-					.status(ResultStatus.AC).build();
+		if (expected.equals(actual)) {
+			this.testResult = TestResult.build().status(ResultStatus.AC).build();
 		} else {
-			this.testResult = TestResult.build()
-					.status(ResultStatus.WA)
+			this.testResult = TestResult.build().status(ResultStatus.WA)
 					.message(actual.getErrorMessage(expected, actual)).build();
 		}
 	}
-	
+
 	public static TestCase of(NetClient client) {
 		return new MainPageTestCase(client);
 	}
 
 }
-

@@ -13,14 +13,14 @@ public class TsubuyakiCommandResult extends CommandResult {
 
 	@Override
 	public boolean equals(CommandResult other) {
-		if ( other == null ) {
+		if (other == null) {
 			return false;
 		}
-		if ( !(other.getClass().equals(this.getClass())) ) {
+		if (!(other.getClass().equals(this.getClass()))) {
 			return false;
 		}
 		var _other = this.getClass().cast(other);
-		if ( _other == null ) {
+		if (_other == null) {
 			return false;
 		}
 		boolean isEquals = true;
@@ -41,8 +41,10 @@ public class TsubuyakiCommandResult extends CommandResult {
 	public static Builder builder() {
 		return new Builder();
 	}
+
 	public static class Builder {
 		private TsubuyakiCommandResult result;
+
 		public Builder() {
 			result = new TsubuyakiCommandResult();
 		}
@@ -51,17 +53,19 @@ public class TsubuyakiCommandResult extends CommandResult {
 			result.httpStatus = httpStatus;
 			return this;
 		}
+
 		public Builder body(String body) {
 			result.body = body.trim();
 			return this;
 		}
+
 		public Builder errorMessage(String errorMessage) {
 			result.errorMessage = errorMessage;
 			return this;
 		}
+
 		public TsubuyakiCommandResult build() {
 			return result;
 		}
 	}
 }
-

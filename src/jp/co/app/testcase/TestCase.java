@@ -1,6 +1,5 @@
 package jp.co.app.testcase;
 
-import jp.co.app.results.ResultStatus;
 import jp.co.app.results.tests.TestResult;
 import jp.co.app.parameters.tests.TestParameter;
 
@@ -10,9 +9,11 @@ public abstract class TestCase {
 	protected TestParameter param;
 	protected String title;
 	protected TestResult testResult;
-	
+
 	protected abstract void setUp();
+
 	protected abstract void tearDown();
+
 	protected abstract void run();
 
 	public TestCase test() {
@@ -29,6 +30,7 @@ public abstract class TestCase {
 	public void outResult() {
 		System.out.println(this.toString());
 	}
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder("Case");
@@ -36,7 +38,7 @@ public abstract class TestCase {
 		sb.append(title);
 		sb.append(SEP);
 		sb.append("[");
-		switch(testResult.getStatus()) {
+		switch (testResult.getStatus()) {
 		case AC:
 			createOkString(sb);
 			break;
@@ -57,7 +59,7 @@ public abstract class TestCase {
 		sb.append("OK");
 		sb.append("]");
 	}
-	
+
 	private void createNgString(StringBuilder sb, TestResult testResult) {
 		sb.append("NG");
 		sb.append("]");
@@ -66,7 +68,7 @@ public abstract class TestCase {
 		sb.append(LF);
 		sb.append(testResult.getMessage());
 	}
-	
+
 	private void createErrorString(StringBuilder sb, TestResult testResult) {
 		sb.append("NG");
 		sb.append("]");
@@ -75,12 +77,11 @@ public abstract class TestCase {
 		sb.append(LF);
 		sb.append(testResult.getMessage());
 	}
-	
+
 	private void createSkipString(StringBuilder sb) {
 		sb.append("SKIP");
 		sb.append("]");
 		sb.append(LF);
 	}
-	
-}
 
+}

@@ -4,14 +4,18 @@ import jp.co.app.web.NetClient;
 
 public class NetCommandParameter extends CommandParameter {
 	protected NetClient client;
+
 	public NetClient getClient() {
 		return this.client;
 	}
+
 	public static Builder builder() {
 		return new Builder();
 	}
+
 	public static class Builder {
 		private NetCommandParameter params;
+
 		public Builder() {
 			params = new NetCommandParameter();
 		}

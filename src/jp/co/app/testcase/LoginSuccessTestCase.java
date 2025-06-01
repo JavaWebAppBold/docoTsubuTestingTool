@@ -16,18 +16,11 @@ public class LoginSuccessTestCase extends TestCase {
 
 	public LoginSuccessTestCase(NetClient client) {
 		this.tergetCommand = LoginCommand.of(client);
-		param = TestParameter.builder()
-			.operation(Operation.of(
-									this.tergetCommand
-									))
-		.build();
-		expected = LoginCommandResult.builder()
-			.httpStatus(200)
-			.body("/docoTsubu/Main")
-		 	.build();
+		param = TestParameter.builder().operation(Operation.of(this.tergetCommand)).build();
+		expected = LoginCommandResult.builder().httpStatus(200).body("/docoTsubu/Main").build();
 		title = "4. ログイン結果画面（成功）が正常に表示されている";
 	}
-	
+
 	@Override
 	protected void setUp() {
 	}
@@ -35,24 +28,21 @@ public class LoginSuccessTestCase extends TestCase {
 	@Override
 	protected void tearDown() {
 	}
-	
+
 	@Override
 	protected void run() {
 		param.getOperation().execute();
 		var actual = this.tergetCommand.getResult();
-		if ( expected.equals(actual) ) {
-			this.testResult = TestResult.build()
-					.status(ResultStatus.AC).build();
+		if (expected.equals(actual)) {
+			this.testResult = TestResult.build().status(ResultStatus.AC).build();
 		} else {
-			this.testResult = TestResult.build()
-					.status(ResultStatus.WA)
+			this.testResult = TestResult.build().status(ResultStatus.WA)
 					.message(actual.getErrorMessage(expected, actual)).build();
 		}
 	}
-	
+
 	public static TestCase of(NetClient client) {
 		return new LoginSuccessTestCase(client);
 	}
 
 }
-

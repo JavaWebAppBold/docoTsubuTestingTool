@@ -7,7 +7,7 @@ public final class Properties {
 	private static Properties instance = null;
 
 	private Map<PropertyKey, Object> configs;
-	
+
 	private Properties() {
 		this.configs = new HashMap<>();
 	}
@@ -15,9 +15,11 @@ public final class Properties {
 	public void add(PropertyKey key, Object value) {
 		this.configs.put(key, value);
 	}
+
 	public void remove(PropertyKey key) {
 		this.configs.remove(key);
 	}
+
 	public Object get(PropertyKey key) {
 		return this.configs.get(key);
 	}

@@ -1,3 +1,4 @@
 package jp.co.app.results.commands;
 
-public class ClientClearCommandResult extends NetCommandResult {}
+public class ClientClearCommandResult extends NetCommandResult {
+}

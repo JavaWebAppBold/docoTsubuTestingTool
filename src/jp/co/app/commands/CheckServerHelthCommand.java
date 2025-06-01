@@ -5,9 +5,6 @@ import jp.co.app.results.commands.CommandResult;
 import jp.co.app.results.commands.CheckServerHelthCommandResult;
 
 public class CheckServerHelthCommand extends NetCommand {
-	// private RootPathAccessCommand(RootPathAccessCommandParameter param) {
-	// 	super(param);
-	// }
 	private CheckServerHelthCommand(NetClient client) {
 		this.client = client;
 	}
@@ -16,16 +13,13 @@ public class CheckServerHelthCommand extends NetCommand {
 	public void execute() {
 		this.client.get("");
 		var result = this.client.getCurrentResult();
-		if ( "".equals(result.getErrorMessage()) ) {
+		if ("".equals(result.getErrorMessage())) {
 			// pass
 		} else {
 			result.setErrorMessage("Server not work. abort.\n" + result.getErrorMessage());
 		}
-		this.result = CheckServerHelthCommandResult.builder()
-			.httpStatus(result.getHttpStatus())
-			.body(result.getBody())
-			.errorMessage(result.getErrorMessage())
-			.build();
+		this.result = CheckServerHelthCommandResult.builder().httpStatus(result.getHttpStatus()).body(result.getBody())
+				.errorMessage(result.getErrorMessage()).build();
 	}
 
 	public boolean hasResult() {
@@ -41,4 +35,3 @@ public class CheckServerHelthCommand extends NetCommand {
 		return new CheckServerHelthCommand(client);
 	}
 }
-

@@ -10,6 +10,7 @@ import jp.co.app.web.WebQuery;
 
 public class LoginFailCommand extends NetCommand {
 	private NetClient client;
+
 	private LoginFailCommand(NetClient client) {
 		this.client = client;
 	}
@@ -23,11 +24,8 @@ public class LoginFailCommand extends NetCommand {
 
 		this.client.post("Login", query);
 		var result = this.client.getCurrentResult();
-		this.result = LoginFailCommandResult.builder()
-			.httpStatus(result.getHttpStatus())
-			.body(result.getBody())
-			.errorMessage(result.getErrorMessage())
-			.build();
+		this.result = LoginFailCommandResult.builder().httpStatus(result.getHttpStatus()).body(result.getBody())
+				.errorMessage(result.getErrorMessage()).build();
 	}
 
 	public boolean hasResult() {
@@ -38,8 +36,8 @@ public class LoginFailCommand extends NetCommand {
 	public CommandResult getResult() {
 		return this.result;
 	}
+
 	public static LoginFailCommand of(NetClient client) {
 		return new LoginFailCommand(client);
 	}
 }
-

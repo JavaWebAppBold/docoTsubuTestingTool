@@ -11,14 +11,14 @@ public class CheckMutterCommandResult extends NetCommandResult {
 
 	@Override
 	public boolean equals(CommandResult other) {
-		if ( other == null ) {
+		if (other == null) {
 			return false;
 		}
-		if ( !(other.getClass().equals(this.getClass())) ) {
+		if (!(other.getClass().equals(this.getClass()))) {
 			return false;
 		}
 		var _other = this.getClass().cast(other);
-		if ( _other == null || _other.mutter == null ) {
+		if (_other == null || _other.mutter == null) {
 			return false;
 		}
 		boolean isEquals = true;
@@ -30,8 +30,10 @@ public class CheckMutterCommandResult extends NetCommandResult {
 	public static Builder builder() {
 		return new Builder();
 	}
+
 	public static class Builder extends NetCommandResult.Builder {
 		private CheckMutterCommandResult result;
+
 		public Builder() {
 			super();
 			result = new CheckMutterCommandResult();

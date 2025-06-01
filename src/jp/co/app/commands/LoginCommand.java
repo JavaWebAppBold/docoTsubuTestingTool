@@ -10,6 +10,7 @@ import jp.co.app.web.WebQuery;
 
 public class LoginCommand extends NetCommand {
 	private NetClient client;
+
 	private LoginCommand(NetClient client) {
 		this.client = client;
 	}
@@ -23,11 +24,8 @@ public class LoginCommand extends NetCommand {
 
 		this.client.post("Login", query);
 		var result = this.client.getCurrentResult();
-		this.result = LoginCommandResult.builder()
-			.httpStatus(result.getHttpStatus())
-			.body(result.getBody())
-			.errorMessage(result.getErrorMessage())
-			.build();
+		this.result = LoginCommandResult.builder().httpStatus(result.getHttpStatus()).body(result.getBody())
+				.errorMessage(result.getErrorMessage()).build();
 	}
 
 	public boolean hasResult() {
@@ -38,8 +36,8 @@ public class LoginCommand extends NetCommand {
 	public CommandResult getResult() {
 		return this.result;
 	}
+
 	public static LoginCommand of(NetClient client) {
 		return new LoginCommand(client);
 	}
 }
-

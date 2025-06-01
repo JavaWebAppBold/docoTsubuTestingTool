@@ -5,9 +5,6 @@ import jp.co.app.results.commands.CommandResult;
 import jp.co.app.results.commands.RootPathAccessCommandResult;
 
 public class RootPathAccessCommand extends NetCommand {
-	// private RootPathAccessCommand(RootPathAccessCommandParameter param) {
-	// 	super(param);
-	// }
 	private RootPathAccessCommand(NetClient client) {
 		this.client = client;
 	}
@@ -16,11 +13,8 @@ public class RootPathAccessCommand extends NetCommand {
 	public void execute() {
 		this.client.post("");
 		var result = this.client.getCurrentResult();
-		this.result = RootPathAccessCommandResult.builder()
-			.httpStatus(result.getHttpStatus())
-			.body(result.getBody())
-			.errorMessage(result.getErrorMessage())
-			.build();
+		this.result = RootPathAccessCommandResult.builder().httpStatus(result.getHttpStatus()).body(result.getBody())
+				.errorMessage(result.getErrorMessage()).build();
 	}
 
 	public boolean hasResult() {
@@ -36,4 +30,3 @@ public class RootPathAccessCommand extends NetCommand {
 		return new RootPathAccessCommand(client);
 	}
 }
-

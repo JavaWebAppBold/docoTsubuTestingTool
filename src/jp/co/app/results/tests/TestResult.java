@@ -5,11 +5,14 @@ import jp.co.app.results.ResultStatus;
 public class TestResult {
 	private ResultStatus status = ResultStatus.WJ;
 	private String message = "";
-	private TestResult() {}
+
+	private TestResult() {
+	}
 
 	public ResultStatus getStatus() {
 		return status;
 	}
+
 	public String getMessage() {
 		return message;
 	}
@@ -20,13 +23,16 @@ public class TestResult {
 
 	public static class TestResultBuilder {
 		private TestResult result;
+
 		public TestResultBuilder() {
 			result = new TestResult();
 		}
+
 		public TestResultBuilder status(ResultStatus status) {
 			result.status = status;
 			return this;
 		}
+
 		public TestResultBuilder message(String message) {
 			result.message = message;
 			return this;

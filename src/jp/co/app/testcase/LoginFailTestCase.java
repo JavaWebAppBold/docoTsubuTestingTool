@@ -16,18 +16,11 @@ public class LoginFailTestCase extends TestCase {
 
 	public LoginFailTestCase(NetClient client) {
 		this.tergetCommand = LoginFailCommand.of(client);
-		param = TestParameter.builder()
-			.operation(Operation.of(
-									this.tergetCommand
-									))
-		.build();
-		expected = LoginFailCommandResult.builder()
-			.httpStatus(200)
-			.body("href=\"/docoTsubu/\"")
-		 	.build();
+		param = TestParameter.builder().operation(Operation.of(this.tergetCommand)).build();
+		expected = LoginFailCommandResult.builder().httpStatus(200).body("href=\"/docoTsubu/\"").build();
 		title = "5. ログイン結果画面（失敗）が正常に表示されている";
 	}
-	
+
 	@Override
 	protected void setUp() {
 	}
@@ -35,24 +28,21 @@ public class LoginFailTestCase extends TestCase {
 	@Override
 	protected void tearDown() {
 	}
-	
+
 	@Override
 	protected void run() {
 		param.getOperation().execute();
 		var actual = this.tergetCommand.getResult();
-		if ( expected.equals(actual) ) {
-			this.testResult = TestResult.build()
-					.status(ResultStatus.AC).build();
+		if (expected.equals(actual)) {
+			this.testResult = TestResult.build().status(ResultStatus.AC).build();
 		} else {
-			this.testResult = TestResult.build()
-					.status(ResultStatus.WA)
+			this.testResult = TestResult.build().status(ResultStatus.WA)
 					.message(actual.getErrorMessage(expected, actual)).build();
 		}
 	}
-	
+
 	public static TestCase of(NetClient client) {
 		return new LoginFailTestCase(client);
 	}
 
 }
-

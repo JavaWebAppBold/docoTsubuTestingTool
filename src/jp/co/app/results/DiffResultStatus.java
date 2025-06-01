@@ -1,8 +1,7 @@
 package jp.co.app.results;
 
 public enum DiffResultStatus {
-	SAME("SAME"),
-	DIFFERENCE("DIFFERENCE");
+	SAME("SAME"), DIFFERENCE("DIFFERENCE");
 
 	private String label;
 
@@ -10,7 +9,7 @@ public enum DiffResultStatus {
 		this.label = label;
 	}
 
-	public String getLabel(){
+	public String getLabel() {
 		return label;
 	}
 
@@ -18,6 +17,5 @@ public enum DiffResultStatus {
 	public String toString() {
 		return this.label;
 	}
-	
-}
 
+}

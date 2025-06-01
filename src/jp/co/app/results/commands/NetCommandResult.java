@@ -12,13 +12,13 @@ public class NetCommandResult extends CommandResult {
 
 	@Override
 	public boolean equals(CommandResult other) {
-		if ( !isSameClass(other) ) {
+		if (!isSameClass(other)) {
 			return false;
 		}
 		var _other = this.getClass().cast(other);
 		boolean isEquals = true;
 		isEquals = isEquals && (this.httpStatus == _other.httpStatus);
-		if ( this.body.equals(_other.body) ) {
+		if (this.body.equals(_other.body)) {
 			return isEquals;
 		}
 		isEquals = isEquals && this.match(_other);
@@ -41,7 +41,7 @@ public class NetCommandResult extends CommandResult {
 		canCheck = canCheck && isSameClass(actual);
 		canCheck = canCheck && isOkStatus();
 		StringBuilder sb = new StringBuilder();
-		if ( !canCheck ) {
+		if (!canCheck) {
 			sb.append("エラーメッセージ:");
 			sb.append(LF);
 			sb.append(actual.getErrorMessage());
@@ -59,28 +59,30 @@ public class NetCommandResult extends CommandResult {
 	}
 
 	private boolean isSameClass(CommandResult testee) {
-		if ( testee == null ) {
+		if (testee == null) {
 			return false;
 		}
-		if ( !(testee.getClass().equals(this.getClass())) ) {
+		if (!(testee.getClass().equals(this.getClass()))) {
 			return false;
 		}
 		var _testee = this.getClass().cast(testee);
-		if ( _testee == null ) {
+		if (_testee == null) {
 			return false;
 		}
 		return true;
 	}
 
 	private boolean isOkStatus() {
-		return this.httpStatus >= 200 && this.httpStatus < 400 ;
+		return this.httpStatus >= 200 && this.httpStatus < 400;
 	}
 
 	public static Builder builder() {
 		return new Builder();
 	}
+
 	public static class Builder {
 		private NetCommandResult result;
+
 		public Builder() {
 			result = new NetCommandResult();
 		}
@@ -89,17 +91,19 @@ public class NetCommandResult extends CommandResult {
 			result.httpStatus = httpStatus;
 			return this;
 		}
+
 		public Builder body(String body) {
 			result.body = body.trim();
 			return this;
 		}
+
 		public Builder errorMessage(String errorMessage) {
 			result.errorMessage = errorMessage;
 			return this;
 		}
+
 		public NetCommandResult build() {
 			return result;
 		}
 	}
 }
-

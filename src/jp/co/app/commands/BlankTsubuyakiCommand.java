@@ -7,6 +7,7 @@ import jp.co.app.results.commands.BlankTsubuyakiCommandResult;
 
 public class BlankTsubuyakiCommand extends NetCommand {
 	private NetClient client;
+
 	private BlankTsubuyakiCommand(NetClient client) {
 		this.client = client;
 	}
@@ -18,11 +19,8 @@ public class BlankTsubuyakiCommand extends NetCommand {
 
 		this.client.post("Main", query);
 		var result = this.client.getCurrentResult();
-		this.result = BlankTsubuyakiCommandResult.builder()
-			.httpStatus(result.getHttpStatus())
-			.body(result.getBody())
-			.errorMessage(result.getErrorMessage())
-			.build();
+		this.result = BlankTsubuyakiCommandResult.builder().httpStatus(result.getHttpStatus()).body(result.getBody())
+				.errorMessage(result.getErrorMessage()).build();
 	}
 
 	public boolean hasResult() {
@@ -33,8 +31,8 @@ public class BlankTsubuyakiCommand extends NetCommand {
 	public CommandResult getResult() {
 		return this.result;
 	}
+
 	public static BlankTsubuyakiCommand of(NetClient client) {
 		return new BlankTsubuyakiCommand(client);
 	}
 }
-
