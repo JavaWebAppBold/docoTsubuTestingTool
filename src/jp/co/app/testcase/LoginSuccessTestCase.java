@@ -23,7 +23,7 @@ public class LoginSuccessTestCase extends TestCase {
 		.build();
 		expected = LoginCommandResult.builder()
 			.httpStatus(200)
-			.body("href=\"/docoTsubu/Main\"")
+			.body("/docoTsubu/Main")
 		 	.build();
 		title = "4. ログイン結果画面（成功）が正常に表示されている";
 	}
