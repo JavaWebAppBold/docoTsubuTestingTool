@@ -41,9 +41,12 @@ public class TopPageTestCase extends TestCase {
 		param.getOperation().execute();
 		var actual = this.tergetCommand.getResult();
 		if ( expected.equals(actual) ) {
-			this.testResult = TestResult.build().status(ResultStatus.AC).build();
+			this.testResult = TestResult.build()
+					.status(ResultStatus.AC).build();
 		} else {
-			this.testResult = TestResult.build().status(ResultStatus.WA).message(actual.getErrorMessage()).build();
+			this.testResult = TestResult.build()
+					.status(ResultStatus.WA)
+					.message(actual.getErrorMessage(expected, actual)).build();
 		}
 	}
 	
