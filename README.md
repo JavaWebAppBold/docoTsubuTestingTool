@@ -99,15 +99,15 @@ Eclipseで実行する場合、大きく3つのステップからなります。
 
 ### OK時
 
-![OK時](./assets/OK_output.png)
+![OK時](./docs/assets/OK_output.png)
 
 ### NG時
 
-![NG時](./assets/NG_output.png)
+![NG時](./docs/assets/NG_output.png)
 
 ### 例外発生時
 
-![RE時](./assets/RE_output.png)
+![RE時](./docs/assets/RE_output.png)
 
 
 
