@@ -9,3 +9,5 @@
 	* gitHubのCI/CD使いたい
 	    * 【課題】h2dbを含んだjarファイルをeclipseなしでbuildする方法
 		    * mavenやgradleを導入する？
+* ブランチ戦略を確立する
+
